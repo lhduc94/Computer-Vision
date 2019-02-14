@@ -34,24 +34,24 @@ if __name__ == "__main__":
     db = args["database"]
     img_list = get_imlist(db)
     
-    print "--------------------------------------------------"
-    print "         feature extraction starts"
-    print "--------------------------------------------------"
+    print ("--------------------------------------------------")
+    print ("         feature extraction starts")
+    print ("--------------------------------------------------")
     
     feats = []
     names = []
     model = None
     if args["model"].upper() == 'VGG16':
-        print "using VGG16....\n"
+        print ("using VGG16....\n")
         model = VGG16Net()
     elif args["model"].upper() == 'VGG19':
-        print "using VGG19....\n"
+        print ("using VGG19....\n")
         model = VGG19Net()
     elif args["model"].upper() == 'RESNET50':
-        print "using RESNET50...\n"
+        print ("using RESNET50...\n")
         model = ResNet50Net()
     elif args["model"].upper() == 'XCEPTION':
-        print "using Xception...\n"
+        print ("using Xception...\n")
         model = XceptionNet()
     # elif args["model"].upper() == 'IN_RESNET_V2':
     #     print 'using InceptionResNetV2....\n'
@@ -61,17 +61,17 @@ if __name__ == "__main__":
         img_name = os.path.split(img_path)[1]
         feats.append(norm_feat)
         names.append(img_name)
-        print "extracting feature from image No. %d , %d images in total" %((i+1), len(img_list))
+        print ("extracting feature from image No. %d , %d images in total" %((i+1), len(img_list)))
 
     feats = np.array(feats)
     # directory for storing extracted features
     output = args["index"]
     
-    print "--------------------------------------------------"
-    print "      writing feature extraction results ..."
-    print "--------------------------------------------------"
+    print ("-------------------------------------------------")
+    print ("     writing feature extraction results ...")
+    print ("-------------------------------------------------")
     
     h5f = h5py.File(output, 'w')
-    h5f.create_dataset('dataset_1', data = feats)
-    h5f.create_dataset('dataset_2', data = names)
+    h5f.create_dataset('dataset_1', data=feats)
+    h5f.create_dataset('dataset_2', data=np.string_(names))
     h5f.close()

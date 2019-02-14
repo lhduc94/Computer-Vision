@@ -32,9 +32,9 @@ feats = h5f['dataset_1'][:]
 imgNames = h5f['dataset_2'][:]
 h5f.close()
         
-print "--------------------------------------------------"
-print "               searching starts"
-print "--------------------------------------------------"
+print ("--------------------------------------------------")
+print ("               searching starts")
+print ("--------------------------------------------------")
     
 # read and show query image
 queryDir = args["query"]
@@ -44,16 +44,16 @@ queryImg = mpimg.imread(queryDir)
 # init VGGNet16 model
 model = None
 if args["model"].upper() == 'VGG16':
-    print "using VGG16....\n"
+    print ("using VGG16....\n")
     model = VGG16Net()
 elif args["model"].upper() == 'VGG19':
-    print "using VGG19....\n"
+    print ("using VGG19....\n")
     model = VGG19Net()
 elif args["model"].upper() == 'RESNET50':
-    print "using RESNET50...\n"
+    print ("using RESNET50...\n")
     model = ResNet50Net()
 elif args["model"].upper() == 'XCEPTION':
-    print "using Xception...\n"
+    print ("using Xception...\n")
     model = XceptionNet()
 # elif args["model"].upper() == 'IN_RESNET_V2':
 #     print 'using InceptionResNetV2....\n'
@@ -70,7 +70,7 @@ rank_score = scores[rank_ID]
 # number of top retrieved images to show
 maxres = 17
 imlist = [imgNames[index] for i,index in enumerate(rank_ID[0:maxres])]
-print "top %d images in order are: " %maxres, imlist
+print ("top %d images in order are: " %maxres, imlist)
 # f, axarr = plt.subplots(1,4)
 plt.figure(figsize=(10, 10))
 plt.subplot(3,7,1)

@@ -18,7 +18,7 @@ class VGG16Net:
         self.input_shape = (224, 224, 3)
         self.weight = 'imagenet'
         self.pooling = 'max'
-        self.model = VGG19(weights = self.weight, input_shape = (self.input_shape[0], self.input_shape[1], self.input_shape[2]), pooling = self.pooling, include_top = False)
+        self.model = VGG16(weights = self.weight, input_shape = (self.input_shape[0], self.input_shape[1], self.input_shape[2]), pooling = self.pooling, include_top = False)
         self.model.predict(np.zeros((1, 224, 224 , 3)))
 
     '''
